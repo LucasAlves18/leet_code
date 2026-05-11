@@ -1,2 +1,2 @@
-# leet_code
-Treinando desafios do leet_code
+## Leet Code 
+Treinando desafios do leet_code!
