@@ -1,7 +1,8 @@
 from typing import Optional
 
-l1 = [2,4,3]
-l2 = [5,6,4,6]
+l1 = [2, 4, 3]
+l2 = [5, 6, 4]
+
 
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -13,22 +14,29 @@ class Solution:
     @staticmethod
     def addTwoNumbers(lista1: Optional[ListNode], lista2: Optional[ListNode]) -> Optional[ListNode]:
         while lista1 or lista2:
-            if not lista1.val:
-                lista1.val = 0
+            v1 = lista1.val if lista1 else 0
+            v2 = lista2.val if lista2 else 0
 
-            if not lista2.val:
-                lista2.al = 0
+            calculo_anterior = None
+            carry = None
 
-            print(lista1.val)
-            lista1 = lista1.next
+            lista_calculados = [int]
+            calculo = v1+v2
+            if calculo >= 10:
+                carry = calculo//10
 
-            print(lista2.val)
-            lista2 = lista2.next
+            if calculo_anterior:
+                calculo += carry
 
-        pass
+
+            print(calculo)
+
+            lista1 = lista1.next if lista1 else None
+            lista2 = lista2.next if lista2 else None
+
 
     @staticmethod
-    def create_node_list(lista:list[int]):
+    def create_node_list(lista: list[int]):
         anterior = None
         lista_completa = None
 
@@ -42,6 +50,7 @@ class Solution:
                 anterior = atual
 
         return lista_completa
+
 
 l1_list = Solution.create_node_list(l1)
 l2_list = Solution.create_node_list(l2)
