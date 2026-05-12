@@ -2,6 +2,7 @@
 Calcular números de um array e retornar as posições
 que o resultado da soma dão o valor de target
 """
+# https://leetcode.com/problems/two-sum/
 
 nums = [3, 2, 3]
 target = 6
