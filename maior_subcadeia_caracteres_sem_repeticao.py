@@ -16,5 +16,4 @@ class Solution:
 
         return maior
 
-
 teste = Solution.lengthOfLongestSubstring('anviaj')
