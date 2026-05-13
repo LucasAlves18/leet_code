@@ -1,35 +1,20 @@
 # https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+from typing import Sized
 
 
 class Solution:
     @staticmethod
-    def lengthOfLongestSubstring(string: str) -> int:
+    def lengthOfLongestSubstring(string: str) -> Sized | int:
         vistos = {}
-        string_fim = []
-        lista_caracteres = []
-        caracteres = ""
-        novo_inicio = 0
-        finalizar = True
-        while finalizar:
-            for i, v in enumerate(string, novo_inicio):
-                if v in vistos:
-                    lista_caracteres.append(caracteres)
-                    caracteres = ""
-                    novo_inicio = vistos[v] - 2
-                    vistos.clear()
-                else:
-                    caracteres = caracteres+v
+        inicio = 0
+        maior = 0
+        for i, v in enumerate(string):
+            if v in vistos and vistos[v] >= inicio:
+                inicio = vistos[v] + 1
+            vistos[v] = i
+            maior = max(maior, i - inicio + 1)
 
-                string_fim.append(v)
-                if len(string_fim) == len(string):
-                    lista_caracteres.append(caracteres)
-                    finalizar = False
+        return maior
 
-                vistos[v] = i
 
-        maior_lista = max(lista_caracteres, key=len)
-        print(maior_lista)
-        return len(maior_lista)
-
-teste = Solution.lengthOfLongestSubstring('dvdf')
-print(f'resultado: {teste}')
+teste = Solution.lengthOfLongestSubstring('anviaj')
