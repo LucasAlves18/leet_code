@@ -7,20 +7,42 @@ class Solution:
         if not nums:
             return [-1, -1]
 
-        indice_um = Solution.find_first(nums, target)
+        ultimo_indice = Solution.find_first(nums, target)
 
-        return [indice_um, indice_um]
+        if ultimo_indice == -1:
+            return [-1, -1]
+
+        left = 0
+        rigth = ultimo_indice
+        result = -1
+
+        while left <= rigth:
+
+            meio = (left + rigth) // 2
+
+            if nums[meio] == target:
+                result = meio
+                rigth = meio-1
+
+            if nums[meio] > target:
+                rigth = meio - 1
+
+            if nums[meio] < target:
+                left = meio + 1
+
+        return [result, ultimo_indice]
 
     @staticmethod
     def find_first(nums: list[int], target: int) -> int:
         left = 0
-        rigth = len(nums) - 1
+        rigth = len(nums) -1
+        result = -1
 
         while left <= rigth:
-            meio = (left+rigth)//2
+            meio = (left + rigth) // 2
 
             if nums[meio] == target:
-                return meio
+                result = meio
 
             if nums[meio] > target:
                 rigth = meio - 1
@@ -28,7 +50,8 @@ class Solution:
             else:
                 left = meio + 1
 
-        return -1
+        return result
 
-teste = Solution.searchRange(nums = [1], target = 0)
+
+teste = Solution.searchRange(nums=[1,1,1], target=1)
 print(teste)
